@@ -23,38 +23,37 @@
 				}
 			});
 			this.topScore = 0;
-			this.scale = this.canvas.width > 750 ? 1 : 0.5;
-			console.log(this.scale, this.canvas.width, this.canvas.height); 
+			this.scale = this.canvas.width / 480;
 		},
 		run: function(){
 			//setInterval中函数的this指向window
 			var self = this;
 			//创建角色
-			this.fangzi = new Background({
-				"image": this.images.fangzi,
+			this.house = new Background({
+				"image": this.images.house,
 				"imgWidth": 300,
 				"imgHeight": 256,
-				"width": 300 * this.scale,
-				"height": 256 * this.scale,
-				"y": this.canvas.height - 304 * this.scale,
+				"width": this.canvas.width / 2,
+				"height": this.canvas.height / 4,
+				"y": this.canvas.height * 7 / 10,
 				"speed": 1
 			});
-			this.shu = new Background({
-				"image": this.images.shu,
+			this.tree = new Background({
+				"image": this.images.tree,
 				"imgWidth": 300,
 				"imgHeight": 216,
-				"width": 300 * this.scale,
-				"height": 216 * this.scale,
-				"y": this.canvas.height - 264 * this.scale,
+				"width": this.canvas.width / 2,
+				"height": this.canvas.height / 5,
+				"y": this.canvas.height * 3 / 4,
 				"speed": 2
 			});
-			this.diban = new Background({
-				"image": this.images.diban,
+			this.floor = new Background({
+				"image": this.images.floor,
 				"imgWidth": 48,
 				"imgHeight": 48,
-				"width": 48 * this.scale,
-				"height": 48 * this.scale,
-				"y": this.canvas.height - 48 * this.scale,
+				"width": this.canvas.width / 15,
+				"height": this.canvas.height / 20,
+				"y": this.canvas.height * 19 / 20,
 				"speed": 3
 			});
 			this.bird = new Bird();
@@ -71,13 +70,13 @@
 			this.frameUtil.update();
 			//清屏
 			this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
-			this.fangzi.render();
-			this.fangzi.update();
-			this.shu.render();
-			this.shu.update();
-			this.diban.render();
-			this.diban.update();
-			if(!this.gameend && this.frameUtil.currentFrame % (200 * this.scale) == 0){
+			this.house.render();
+			this.house.update();
+			this.tree.render();
+			this.tree.update();
+			this.floor.render();
+			this.floor.update();
+			if(!this.gameend && this.frameUtil.currentFrame % 96 == 0){
 				this.pipeArray.push(new Pipe());
 			}
 			for(var i = 0; i < this.pipeArray.length; i++){
@@ -111,9 +110,9 @@
 		},
 		gameover: function(){
 			//各种暂停
-			this.fangzi.pause();
-			this.shu.pause();
-			this.diban.pause();
+			this.house.pause();
+			this.tree.pause();
+			this.floor.pause();
 			for(var i = 0; i < this.pipeArray.length; i++){
 				this.pipeArray[i].pause();
 			}

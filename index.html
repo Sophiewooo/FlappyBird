@@ -13,12 +13,12 @@
 				/*不转块无法居中*/
 				display: block;
 				background-color: skyblue;
-				margin: 0 auto;
+				margin: 50px auto;
 			}			
 		</style>
 	</head>
 	<body>
-		<canvas id="canvas" ></canvas>
+		<canvas id="canvas" width="480" height="640"></canvas>
 		<script src="js/jquery-3.2.1.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/simpleInheritance.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/underscore.js" type="text/javascript" charset="utf-8"></script>
@@ -30,8 +30,8 @@
 		<script src="js/Pipe.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/ScoreManager.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			document.getElementById("canvas").width = document.documentElement.clientWidth;
-        		document.getElementById("canvas").height = document.documentElement.clientHeight;
+			document.getElementById("canvas").width = document.documentElement.clientWidth > 480 ? 480 : document.documentElement.clientWidth;
+        		document.getElementById("canvas").height = document.getElementById("canvas").width * 4 / 3;
 			var game = new Game({
 				"fps": 50,
 				"canvasId": "canvas" 

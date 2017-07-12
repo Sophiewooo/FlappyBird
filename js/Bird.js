@@ -1,14 +1,14 @@
 (function(){
 	window.Bird = Class.extend({
 		init: function(){
-			this.w = 92 * game.scale;
-			this.h = 64 * game.scale;
+			this.w = 57 * game.scale;
+			this.h = 40 * game.scale;
 			this.x = (game.canvas.width - this.w) / 2;
 			this.y = game.canvas.height / 3;
 			//翅膀的状态，合法值0，1，2
 			this.swing = 0;
 			this.dy = 0;
-			this.dropSpeed = 0.2;
+			this.dropSpeed = 0.3 * game.scale;
 			this.startFrame = game.frameUtil.currentFrame;
 			this.ro = 0;
 			this.bindClickListener();
@@ -22,12 +22,12 @@
 		render: function(){
 			if(this.die){
 				if(this.touchFloor){
-					game.ctx.drawImage(game.images.die, 0, 0, 80, 60, game.canvas.width / 2 - 40 * game.scale, this.y + this.h - 30 * game.scale, 80 * game.scale, 60 * game.scale);
+					game.ctx.drawImage(game.images.die, 0, 0, 80, 60, game.canvas.width / 2 - 20 * game.scale, this.y + this.h - 15 * game.scale, 40 * game.scale, 30 * game.scale);
 					game.pause();
 				}else{
 					var row = parseInt(this.dieAnimate / 5);
 					var col = this.dieAnimate % 5;
-					game.ctx.drawImage(game.images.blood, 325 * col, 138 * row, 325, 138, game.canvas.width / 2 - 162.5 * game.scale, this.y + this.h / 2, 325 * game.scale, 138 * game.scale);
+					game.ctx.drawImage(game.images.blood, 325 * col, 138 * row, 325, 138, game.canvas.width / 2 - 81.25 * game.scale, this.y + this.h / 2, 162.5 * game.scale, 69 * game.scale);
 				}
 			}
 			game.ctx.save();
@@ -44,7 +44,7 @@
 			this.ro = -30;
 		},
 		update: function(){
-			if(this.y >= game.canvas.height - 50 * game.scale - this.h){
+			if(this.y >= game.canvas.height - 35 * game.scale - this.h){
 				game.gameover();
 				this.touchFloor = true;
 				return;
@@ -61,7 +61,7 @@
 			if(this.state == 0){
 				this.dy = this.dropSpeed * (game.frameUtil.currentFrame - this.startFrame);
 			}else if(this.state == 1){
-				this.dy = -12 + (game.frameUtil.currentFrame - this.startFrame);
+				this.dy = (-14 + (game.frameUtil.currentFrame - this.startFrame)) * game.scale;
 				if(this.dy >= 0){
 					this.state = 0;
 					this.startFrame = game.frameUtil.currentFrame;

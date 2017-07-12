@@ -10,7 +10,7 @@
 			for(var i = 0; i < this.digits; i++){
 				//取出每一位数字
 				var thisDigit = parseInt(this.score.toString().substr(i, 1));
-				game.ctx.drawImage(game.images.number, thisDigit * 40, 0, 40, 57, this.x + i * 40, game.canvas.height / 8, 40, 57);
+				game.ctx.drawImage(game.images.number, thisDigit * 40, 0, 40, 57, this.x + i * 40 * game.scale, game.canvas.height / 8, 40 * game.scale, 57 * game.scale);
 			}
 		},
 		//不是每帧更新，每过一根管子更新一次

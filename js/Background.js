@@ -8,7 +8,7 @@
 			this.width = params.width;
 			this.height = params.height;
 			this.y = params.y;
-			this.speed = params.speed;
+			this.speed = params.speed * game.scale;
 			//能平铺满画布的图片数，向上取整
 			this.amount = Math.ceil(game.canvas.width / this.width);
 			this.x = 0;
